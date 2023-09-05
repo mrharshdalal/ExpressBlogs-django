@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Blog Post</title>
+    <!-- Include Bootstrap CSS from a CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <h2 class="mb-4">Create a New Blog Post</h2>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.media }}
+            <div class="mb-3">
+                {{ form.title.label_tag }}<br>
+                {{ form.title }}
+                {% if form.title.errors %}
+                <div class="text-danger">
+                    {{ form.title.errors.0 }}
+                </div>
+                {% endif %}
+            </div>
+            <div class="mb-3">
+                {{ form.content.label_tag }}<br>
+                {{ form.content }}
+                {% if form.content.errors %}
+                <div class="text-danger">
+                    {{ form.content.errors.0 }}
+                </div>
+                {% endif %}
+            </div>
+            <div class="mb-3">
+                {{ form.image.label_tag }}<br>
+                {{ form.image }}
+                {% if form.image.errors %}
+                <div class="text-danger">
+                    {{ form.image.errors.0 }}
+                </div>
+                {% endif %}
+            </div>
+            <div class="mb-3">
+                {{ form.hashtags_input.label_tag }}<br>
+                {{ form.hashtags_input }}
+                {% if form.hashtags_input.errors %}
+                <div class="text-danger">
+                    {{ form.hashtags_input.errors.0 }}
+                </div>
+                {% endif %}
+            </div>
+            <button type="submit" class="btn btn-primary">Create Blog</button>
+        </form>
+    </div>
+
+    <!-- Include Bootstrap JS and jQuery from CDNs -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js"></script>
+</body>
+</html>
