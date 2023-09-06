@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %}Search Results{% endblock %}
+
+{% block content %}
+<h1>Search Results</h1>
+
+{% if query %}
+<p>Showing results for: {{ query }}</p>
+{% endif %}
+
+<ul>
+    {% for blog_post in blog_posts %}
+    <li>
+      <h2>{{ blog_post.title }}</h2>
+      <p>
+        Hashtags: {% for hashtag in blog_post.hashtags.all %}
+        <span>{{ hashtag.name }}</span>
+        {% endfor %}
+      </p>
+      <img src="{{ blog_post.image.url }}" alt="Blog Image" />
+      <p>{{ blog_post.content }}</p>
+      <!-- Display other blog post details as needed -->
+    </li>
+    {% empty %}
+    <li>No blog posts available.</li>
+    {% endfor %}
+  </ul>
+{% endblock %}

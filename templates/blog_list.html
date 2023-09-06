@@ -1,26 +1,21 @@
-{% load static %}
+{% extends 'base.html' %} {% block content %}
+<h1>Blog List</h1>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog List</title>
-</head>
-<body>
-    <h1>Blog List</h1>
-
-    <ul>
-        {% for blog_post in blog_posts %}
-            <li>
-                <h2>{{ blog_post.title }}</h2>
-                <img src="{{ blog_post.image.url }}" alt="Blog Image">
-                <p>{{ blog_post.content }}</p>
-                <!-- Display other blog post details as needed -->
-            </li>
-        {% empty %}
-            <li>No blog posts available.</li>
-        {% endfor %}
-    </ul>
-</body>
-</html>
+<ul>
+  {% for blog_post in blog_posts %}
+  <li>
+    <h2>{{ blog_post.title }}</h2>
+    <p>
+      Hashtags: {% for hashtag in blog_post.hashtags.all %}
+      <span>{{ hashtag.name }}</span>
+      {% endfor %}
+    </p>
+    <img src="{{ blog_post.image.url }}" alt="Blog Image" />
+    <p>{{ blog_post.content }}</p>
+    <!-- Display other blog post details as needed -->
+  </li>
+  {% empty %}
+  <li>No blog posts available.</li>
+  {% endfor %}
+</ul>
+{% endblock %}

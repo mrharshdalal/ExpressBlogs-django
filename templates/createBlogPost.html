@@ -41,11 +41,11 @@
                 {% endif %}
             </div>
             <div class="mb-3">
-                {{ form.hashtags_input.label_tag }}<br>
-                {{ form.hashtags_input }}
-                {% if form.hashtags_input.errors %}
+                {{ form.hashtags.label_tag }}<br>
+                {{ form.hashtags }}
+                {% if form.hashtags.errors %}
                 <div class="text-danger">
-                    {{ form.hashtags_input.errors.0 }}
+                    {{ form.hashtags.errors.0 }}
                 </div>
                 {% endif %}
             </div>

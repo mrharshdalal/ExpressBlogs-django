@@ -3,7 +3,11 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import AnonymousUser
 from .createBlog import BlogPostForm
-from .models import BlogPost
+from .models import BlogPost, Hashtag
+from django.db.models import Q
+from django.db import connection
+
+
 
 # Create your views here.
 def index(request):
@@ -65,3 +69,20 @@ def blog_list(request):
     blog_posts = BlogPost.objects.all()
     return render(request, 'blog_list.html', {'blog_posts': blog_posts})
 
+def search_results(request):
+    query = request.GET.get('query', '')
+    print(query)
+    # connection.queries = []
+    # print(connection.queries)
+
+    # Search for blog posts that match the query in title or hashtags
+    blog_posts = BlogPost.objects.filter(
+        Q(title__icontains=query) | Q(hashtags__name__icontains=query)
+    )
+    
+    context = {
+        'query': query,
+        'blog_posts': blog_posts,
+    }
+    
+    return render(request, 'search_results.html', context)
