@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>{% block title %}My Blog{% endblock %}</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    {% comment %}
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
+      crossorigin="anonymous"
+    />
+    {% endcomment %}
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  </head>
+  <body>
+
+    <div class="container-fluid" style="max-width:1500px">
+        
+    </div>
+
+    
+    <header class="p-3 mb-3 border-bottom">
+      <div class="container">
+        <div
+          class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start"
+        >
+          <a
+            href="/"
+            class="d-flex align-items-center mb-2 mb-lg-0 link-body-emphasis text-decoration-none"
+          >
+            <h2><b> Express </b></h2>
+          </a>
+
+          <ul
+            class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-end mb-md-0 ml-5"
+          >
+            <li>
+              <a href="#" class="nav-link px-2 link-body-emphasis ml-5"
+                >About</a
+              >
+            </li>
+            <li>
+              <a href="#" class="nav-link px-2 link-body-emphasis">Premium</a>
+            </li>
+            <li>
+              <a href="create/" class="nav-link px-2 link-body-emphasis"
+                >+ New Blog</a
+              >
+            </li>
+            {% comment %}
+            <li>
+              <a href="#" class="nav-link px-2 link-body-emphasis">Products</a>
+            </li>
+            {% endcomment %}
+          </ul>
+          <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
+            <input
+              type="search"
+              class="form-control"
+              placeholder="Search..."
+              aria-label="Search"
+            />
+          </form>
+
+          <div class="dropdown text-end">
+            <a
+              href="#"
+              class="d-block link-body-emphasis text-decoration-none dropdown-toggle"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              <img
+                src="https://github.com/mdo.png"
+                alt="mdo"
+                width="32"
+                height="32"
+                class="rounded-circle"
+              />
+            </a>
+            <ul class="dropdown-menu text-small">
+              <li><a class="dropdown-item" href="#"></a></li>
+              <li>
+                <a class="dropdown-item" href="#">Welcome {{request.user}}</a>
+              </li>
+              <li><a class="dropdown-item" href="#">Profile</a></li>
+              <li><a class="dropdown-item" href="#">Settings</a></li>
+              {% comment %}
+              <li><hr class="dropdown-divider" /></li>
+              {% endcomment %}
+              <li><a class="dropdown-item" href="login">Sign out</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    {% comment %} <main>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-8">
+            <section id="content">{% block content %}{% endblock %}</section>
+          </div>
+          <div class="col-md-4">
+            <aside id="sidebar">
+              <!-- Sidebar content goes here -->
+            </aside>
+          </div>
+        </div>
+      </div>
+    </main> {% endcomment %}
+
+    <footer>
+      <div
+        class="footer-container d-flex justify-content-center"
+        style="background-color: #072664; width:100%; justify-content:center"
+      >
+        <div class="max-width p-5 mx-0" style="color: white;  max-width: 1320px; align-items:center">
+          <div class="row">
+            <div class="col-md-4">
+              <h1>Express</h1>
+              <br />
+              <p>
+                Lorem Ipsum is simply dummy text of the printing and typesetting
+                industry.
+              </p>
+              <br><br>
+              <div class="social-icons" style="display:flex; flex-direction: coloumn;">
+                <a
+                  id="instaHomeFooter"
+                  href="#"
+                  target=""
+                  style="
+                    background-color: white;
+                    border-radius: 50%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    overflow: hidden;
+                    width: 50px;
+                    height: 50px;
+                  "
+                >
+                  <img src="media/facebook.svg" />
+                </a>
+                <a
+                  id="linkedinHomeFooter"
+                  href="#"
+                  target="_"
+                  style="
+                    background-color: white;
+                    border-radius: 50%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    overflow: hidden;
+                    width: 50px;
+                    height: 50px;
+                    margin-left=10px;
+
+                  "
+                >
+                  <img src="media/instagram.svg" />
+                </a>
+                <a
+                  id="youtubeHomeFooter"
+                  href="#"
+                  target=""
+                  style="
+                    background-color: white;
+                    border-radius: 50%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    overflow: hidden;
+                    width: 50px;
+                    height: 50px;
+                    margin-left=10px;
+
+                  "
+                >
+                  <img src="media/twitter.svg" />
+                </a>
+                <a
+                  id="facebookHomeFooter"
+                  href="#"
+                  target=""
+                  style="
+                    background-color: white;
+                    border-radius: 50%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    overflow: hidden;
+                    width: 50px;
+                    height: 50px;
+                    margin-left=10px;
+
+                  "
+                >
+                  <img src="media/linkedin.svg" /> </a
+                ><br /><br />
+               
+              </div>
+              <br />
+            </div>
+            <div class="col-md-4" id="col2">
+              <div class="row">
+                <div class="col-2"></div>
+                <div class="col-4">
+                  <a id="aboutUsFooter" href="#aboutUS">About Us</a><br /><br />
+                  <a
+                    id="faqFooter"
+                    href="https://goldlane.notion.site/Jewellers-live-FAQs-e8c05c711e63404a8dc28c41ba33b36c"
+                    >FAQ</a
+                  ><br /><br />
+                  <a
+                    id="privacyFooter"
+                    href="https://blog.jewellers.live/?page_id=216"
+                    >Privacy Policy</a
+                  ><br /><br />
+                  <a
+                    id="termsFooter"
+                    href="https://blog.jewellers.live/?page_id=251"
+                    >Terms of Use</a
+                  ><br /><br />
+                </div>
+                <div class="col-6"></div>
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              <div class="contact-block">
+                <div class="row">
+                  <div class="col-2">
+                    <img src="images/phone.png" alt="" />
+                  </div>
+                  <div class="col-10 mt-1">+91-9999999999</div>
+
+                  <div class="w-100"></div>
+                  <br />
+
+                  <div class="col-2"><img src="images/mail.png" alt="" /></div>
+                  <div class="col-10 mt-1">blog@express.com</div>
+
+                  <div class="w-100"></div>
+                  <br />
+
+                  <div class="col-2">
+                    <img src="images/location.png" alt="" />
+                  </div>
+                  <div class="col-10 mt-1">
+                    SMJ Solutions Private LimitedNo.42, H.No.7, Sri Rama
+                    Building Royal Placid Layout, Phase 1, Haralur Main Road,
+                    Bangalore 560102
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </footer> 
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.6/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.min.js"></script>
+    <script src="index.js"></script>
+
+
+  </body>
+</html>

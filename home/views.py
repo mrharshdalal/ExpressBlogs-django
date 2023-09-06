@@ -9,8 +9,15 @@ from .models import BlogPost
 def index(request):
     print(request.user)
     if request.user.is_anonymous:
-        return redirect("login")
-    return render(request, 'index.html')
+        return redirect("base")
+    return render(request, 'base.html')
+
+def home(request):
+    print(request.user)
+    if request.user.is_anonymous:
+        return redirect("")
+    else:
+        return render(request, 'home.html')
 
 def loginUser(request):
     if request.method=="POST":
