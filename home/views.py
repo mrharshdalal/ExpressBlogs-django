@@ -1,9 +1,9 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import AnonymousUser
 from .createBlog import BlogPostForm
-from .models import BlogPost, Hashtag
+from .models import BlogPost, Hashtag, Like
 from django.db.models import Q
 from django.db import connection
 
@@ -86,3 +86,30 @@ def search_results(request):
     }
     
     return render(request, 'search_results.html', context)
+
+def like_blog_post(request, blog_post_id):
+    if request.user.is_authenticated:
+        blog_post = get_object_or_404(BlogPost, pk=blog_post_id)
+
+        # Check if the user has already liked the post
+        existing_like, created = Like.objects.get_or_create(
+            user=request.user,
+            blog_post=blog_post
+        )
+
+        # If the like is created (i.e., user hasn't liked the post before), increment the likes count
+        if created:
+            blog_post.likes += 1
+            blog_post.save()
+
+    return redirect('blog_list')  
+
+def trending_blogs(request):
+    # Retrieve trending blogs by ordering by likes in descending order
+    trending_blog_posts = BlogPost.objects.order_by('-likes')[:5]  # Adjust the number of blogs to display
+
+    context = {
+        'trending_blog_posts': trending_blog_posts,
+    }
+
+    return render(request, 'trendingblogs.html', context)

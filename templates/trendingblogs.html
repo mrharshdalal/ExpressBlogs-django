@@ -1,0 +1,16 @@
+{% comment %} {% extends 'base.html' %} {% endcomment %}
+
+{% block content %}
+<h2>Trending Blogs</h2>
+
+<ul>
+    {% for blog_post in trending_blog_posts %}
+    <li>
+        <h3>{{ blog_post.title }}</h3>
+        <!-- Display other details like content, author, etc. -->
+    </li>
+    {% empty %}
+    <li>No trending blogs available.</li>
+    {% endfor %}
+</ul>
+{% endblock %}

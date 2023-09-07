@@ -13,6 +13,11 @@
     <img src="{{ blog_post.image.url }}" alt="Blog Image" />
     <p>{{ blog_post.content }}</p>
     <!-- Display other blog post details as needed -->
+    <p>Likes: {{ blog_post.likes }}</p>
+    <form method="POST" action="{% url 'like_blog_post' blog_post.id %}">
+        {% csrf_token %}
+        <button type="submit">Like</button>
+    </form>
   </li>
   {% empty %}
   <li>No blog posts available.</li>
