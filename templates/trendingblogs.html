@@ -1,16 +1,14 @@
-{% comment %} {% extends 'base.html' %} {% endcomment %}
+{% extends 'base.html' %}
 
-{% block content %}
+{% block trending_blogs_section %}
 <h2>Trending Blogs</h2>
-
 <ul>
-    {% for blog_post in trending_blog_posts %}
-    <li>
-        <h3>{{ blog_post.title }}</h3>
-        <!-- Display other details like content, author, etc. -->
-    </li>
-    {% empty %}
-    <li>No trending blogs available.</li>
+    {% for blog in trending_blogs %}
+        <li>
+            {% comment %} <a href="{% url 'blog_detail' blog.id %}">{{ blog.title }}</a> {% endcomment %}
+            {{ blog.title }}
+            <span class="like-count">{{ blog.likes }}</span> likes
+        </li>
     {% endfor %}
 </ul>
 {% endblock %}

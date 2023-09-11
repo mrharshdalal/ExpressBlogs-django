@@ -11,6 +11,8 @@ urlpatterns = [
     path('search/', views.search_results, name='search_results'),
     path('like/<int:blog_post_id>/', views.like_blog_post, name='like_blog_post'),
     path('trending/', views.trending_blogs, name='trending_blogs'),
+    path('blog/<int:pk>/', views.blog_detail, name='blog_detail'),
+
 
 
 ]

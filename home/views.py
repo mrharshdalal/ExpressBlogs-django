@@ -4,8 +4,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import AnonymousUser
 from .createBlog import BlogPostForm
 from .models import BlogPost, Hashtag, Like
-from django.db.models import Q
-from django.db import connection
+from django.db.models import Q, Count
 
 
 
@@ -14,14 +13,25 @@ def index(request):
     print(request.user)
     if request.user.is_anonymous:
         return redirect("base")
-    return render(request, 'base.html')
+    trending_blogs = BlogPost.objects.order_by('-likes')[:3]
+
+    context = {
+        'trending_blogs': trending_blogs,
+    }
+    return render(request, 'base.html', context)
 
 def home(request):
     print(request.user)
     if request.user.is_anonymous:
         return redirect("")
     else:
-        return render(request, 'home.html')
+        trending_blogs = BlogPost.objects.order_by('-likes')[:3]
+
+        # Prepare the context with trending_blogs
+        context = {
+            'trending_blogs': trending_blogs,
+        }
+        return render(request, 'home.html', context)
 
 def loginUser(request):
     if request.method=="POST":
@@ -67,14 +77,19 @@ def create_blog_post(request):
 
 def blog_list(request):
     blog_posts = BlogPost.objects.all()
-    return render(request, 'blog_list.html', {'blog_posts': blog_posts})
+    trending_blogs = BlogPost.objects.order_by('-likes')[:3]
+
+    context = {
+        'blog_posts': blog_posts,
+        'trending_blogs': trending_blogs,
+    }
+    
+    return render(request, 'blog_list.html', context)
 
 def search_results(request):
     query = request.GET.get('query', '')
     print(query)
-    # connection.queries = []
-    # print(connection.queries)
-
+   
     # Search for blog posts that match the query in title or hashtags
     blog_posts = BlogPost.objects.filter(
         Q(title__icontains=query) | Q(hashtags__name__icontains=query)
@@ -104,12 +119,17 @@ def like_blog_post(request, blog_post_id):
 
     return redirect('blog_list')  
 
+def blog_detail(request, pk):
+    blog_post = get_object_or_404(BlogPost, pk=pk)
+    return render(request, 'blog_detail.html', {'blog_post': blog_post})
+
 def trending_blogs(request):
     # Retrieve trending blogs by ordering by likes in descending order
-    trending_blog_posts = BlogPost.objects.order_by('-likes')[:5]  # Adjust the number of blogs to display
+    trending_blogs = BlogPost.objects.order_by('-likes')[:3]
 
     context = {
-        'trending_blog_posts': trending_blog_posts,
+        'trending_blogs': trending_blogs,
     }
 
-    return render(request, 'trendingblogs.html', context)
+    return render(request, 'base.html', context)
+
